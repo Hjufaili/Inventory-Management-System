@@ -20,13 +20,13 @@ public class ProductController {
 
     @PostMapping("/create")
     public ResponseEntity<Product> addProduct(@Valid @RequestBody Product product){
-        Product newProduct = productService.AddNewProduct(product);
+        Product newProduct = productService.addNewProduct(product);
         return new ResponseEntity<>(newProduct,HttpStatus.CREATED);
     }
 
     @GetMapping("/getAll")
     public ResponseEntity<?> getAllProduct(){
-            List<Product> allProduct = productService.GetAllActiveProducts();
+            List<Product> allProduct = productService.getAllActiveProducts();
             return new ResponseEntity<>(allProduct,HttpStatus.OK);
 
     }
@@ -34,7 +34,7 @@ public class ProductController {
     @GetMapping("/getById")
     public ResponseEntity<?> getProductById(@Valid @RequestParam Integer id){
         try {
-            Product product = productService.GetProductByID(id);
+            Product product = productService.getProductByID(id);
             return new ResponseEntity<>(product,HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>("Product not found", HttpStatus.NOT_FOUND);
@@ -44,7 +44,7 @@ public class ProductController {
     @PutMapping("/update")
     public ResponseEntity<?> updateProduct (@Valid @RequestBody Product product){
         try {
-            Product updateProduct = productService.UpdateProduct(product);
+            Product updateProduct = productService.updateProduct(product);
             return new ResponseEntity<>(updateProduct,HttpStatus.OK);
         }catch (Exception e){
             return new ResponseEntity<>("Product not found",HttpStatus.NOT_FOUND);
@@ -54,7 +54,7 @@ public class ProductController {
     @DeleteMapping("/delete")
     public ResponseEntity<?> deleteProduct (@Valid @RequestParam Integer id){
         try {
-            productService.DeleteProduct(id);
+            productService.deleteProduct(id);
             return new ResponseEntity<>("Deleted Successfully",HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>("Product not found",HttpStatus.NOT_FOUND);
