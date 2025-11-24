@@ -80,9 +80,8 @@ The system applies the following constraints:
 | Name          | Must not be empty (`@NotBlank`)  |
 | Category      | Must not be empty (`@NotBlank`)  |
 | Price         | Must be > 0 (`@Positive`)        |
-| Quantity      | Must be ≥ 0 (`@PositiveOrZero`)  |
-| Available     | Must not be null (`@NotNull`)    |
-| Active Status | Must not be null (`@NotNull`)    |
+| AvailableQuantity      | Must be ≥ 0 (`@PositiveOrZero`)  |
+
 
 ---
 
