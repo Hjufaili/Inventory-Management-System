@@ -37,8 +37,8 @@ public class Product {
     @PositiveOrZero(message = "Quantity cannot be negative")
     private Integer availableQuantity;
 
-    private Date CreatedDate;
-    private Date UpdatedDate;
-    private Boolean ActiveStatus;
+    private Date createdDate;
+    private Date updatedDate;
+    private Boolean activeStatus;
 
 }
