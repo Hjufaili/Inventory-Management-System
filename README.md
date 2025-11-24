@@ -16,7 +16,7 @@ This system allows you to:
 - Perform soft delete (mark inactive instead of removing)  
 - Validate all important fields  
 - Persist data using a relational database  
-- Maintain clean separation of Controller, Service, Repository, and DTO layers  
+- Maintain clean separation of Controller, Service, and Repository
 
 ---
 
