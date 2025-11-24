@@ -15,13 +15,14 @@ public class ProductService {
     @Autowired
     ProductRepository productRepository;
 
-    public Product AddNewProduct(Product product) {
+    public Product addNewProduct(Product product) {
         product.setCreatedDate(new Date());
+        product.setUpdatedDate(new Date());
         product.setActiveStatus(true);
         return productRepository.save(product);
     }
 
-    public List<Product> GetAllActiveProducts() {
+    public List<Product> getAllActiveProducts() {
         List<Product> activeProduct = new ArrayList<>();
         List<Product> allProduct= productRepository.findAll();
         for (Product p : allProduct) {
@@ -33,21 +34,21 @@ public class ProductService {
         return activeProduct;
     }
 
-    public Product GetProductByID(Integer id) throws Exception {
+    public Product getProductByID(Integer id) throws Exception {
         Product existingProduct = productRepository.findById(id)
                 .orElseThrow(() -> new Exception("Product not found"));
-        if (existingProduct.getActiveStatus()) {
+        if (existingProduct.getActiveStatus() != null && existingProduct.getActiveStatus()) {
             return existingProduct;
         } else {
             throw new Exception("Is not Active");
         }
     }
 
-    public Product UpdateProduct(Product product) throws Exception {
+    public Product updateProduct(Product product) throws Exception {
         Product existingProduct = productRepository.findById(product.getProductId())
                 .orElseThrow(() -> new Exception("Product not found"));
 
-        if (existingProduct.getActiveStatus()) {
+        if (existingProduct.getActiveStatus() != null && existingProduct.getActiveStatus()) {
             product.setUpdatedDate(new Date());
             product.setActiveStatus(existingProduct.getActiveStatus());
             product.setCreatedDate(existingProduct.getCreatedDate());
@@ -58,11 +59,11 @@ public class ProductService {
         }
     }
 
-    public void DeleteProduct(Integer id) throws Exception {
+    public void deleteProduct(Integer id) throws Exception {
         Product existingProduct = productRepository.findById(id)
                 .orElseThrow(() -> new Exception("Product not found"));
 
-        if (existingProduct.getActiveStatus()) {
+        if (existingProduct.getActiveStatus() != null && existingProduct.getActiveStatus()) {
             existingProduct.setUpdatedDate(new Date());
             existingProduct.setActiveStatus(false);
             productRepository.save(existingProduct);
