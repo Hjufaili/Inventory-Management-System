@@ -1,4 +1,4 @@
-# Product Inventory Management System
+# Inventory Management System
 
 This is a Spring Boot app that manages products in a clean, organized way.  
 It supports adding, viewing, updating, and soft-deleting products using a real database.
