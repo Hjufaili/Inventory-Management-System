@@ -1,110 +1,79 @@
-# 📦 Product Inventory Management System
+# Product Inventory Management System
 
-A complete Spring Boot application designed to manage products using clean architecture principles.  
-This project demonstrates CRUD operations, layered structure, validation, timestamps handling, and soft deletion using a real relational database.
-
----
-
-## 🚀 Overview
-
-This system allows you to:
-
-- Add new products  
-- Retrieve only active products  
-- Get a product by ID  
-- Update product information  
-- Perform soft delete (mark inactive instead of removing)  
-- Validate all important fields  
-- Persist data using a relational database  
-- Maintain clean separation of Controller, Service, and Repository
+This is a Spring Boot app that manages products in a clean, organized way.  
+It supports adding, viewing, updating, and soft-deleting products using a real database.
 
 ---
 
-## 🧱 System Features
+## What the System Can Do
 
-### ✅ 1. Add a New Product
-When a new product is created, the system:
-- Accepts **name, category, price, quantity, availability**
-- Automatically generates:
-  - Unique Product ID  
-  - Created Date  
-  - Updated Date  
-  - Active Status = `true`
+### Add Product
+**You provide:**  
+- Name  
+- Category  
+- Price  
+- Quantity  
+- Availability  
 
----
-
-### 🔍 2. Get All Active Products
-- Returns only products with `activeStatus = true`
-- Soft-deleted products do **not** appear
-- Shows only available inventory items
+**System automatically sets:**  
+- Product ID  
+- Created Date  
+- Updated Date  
+- Active = `true`
 
 ---
 
-### 🔎 3. Get Product by ID
-- Fetch a product using its ID  
-- Returns an error if:
-  - Product does not exist  
-  - Product is inactive  
+### Get All Products
+- Shows **only active** products  
+- Soft-deleted products are hidden
 
 ---
 
-### ✏️ 4. Update Product Details
-Editable fields:
-- Product Name  
+### Get Product by ID
+- Returns the product if it exists and is active  
+- Returns "Product not found" if the product is missing or inactive
+
+---
+
+### Update Product
+You can update:
+- Name  
 - Category  
 - Price  
 - Quantity  
 
-Automatically updates **Updated Date**.  
-Fields that **cannot** be edited:
+**System auto-updates the Updated Date.**
+
+You **cannot** change:
 - Product ID  
 - Created Date  
 - Active Status  
 
 ---
 
-### 🗑️ 5. Soft Delete a Product
-Instead of permanent deletion:
-- Set `activeStatus = false`
-- Update the Updated Date
-- Exclude from active product listings
+### Soft Delete
+- Marks the product as inactive (not removed from the database)  
+- Updates the Updated Date  
 
 ---
 
-## ⚖️ Validation Rules
-
-The system applies the following constraints:
-
-| Field         | Validation Rule                  |
-|---------------|----------------------------------|
-| Name          | Must not be empty (`@NotBlank`)  |
-| Category      | Must not be empty (`@NotBlank`)  |
-| Price         | Must be > 0 (`@Positive`)        |
-| AvailableQuantity      | Must be ≥ 0 (`@PositiveOrZero`)  |
-
+## Validation
+- **Name:** must not be empty  
+- **Category:** must not be empty  
+- **Price:** must be > 0  
+- **Quantity:** must be ≥ 0  
 
 ---
 
-## 🗄️ Database Persistence
-
-- All products are stored in a relational DB (MySQL / H2 / PostgreSQL)
-- IDs auto-generated
-- Created & Updated timestamps maintained
-- Soft deletion using boolean flag
-- No permanent record removal
+## Database
+- Uses a relational database  
+- Auto-generated product IDs  
+- Created and updated timestamps maintained  
+- Records are **not permanently deleted** (soft delete)
 
 ---
 
-## 🧩 Layered Architecture
-
-This project uses a clean and modular structure:
-
-### **Controller Layer**
-Handles REST API routes and returns responses.
-
-### **Service Layer**
-Contains business logic, validation, and soft deletion rules.
-
-### **Repository Layer**
-Uses Spring Data JPA for database operations.
-
+## Project Structure
+- **Controller** → handles API endpoints  
+- **Service** → contains business logic  
+- **Repository** → performs database operations  
